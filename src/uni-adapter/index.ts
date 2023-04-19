@@ -1,7 +1,7 @@
 /*
  * @Author: weisheng
  * @Date: 2023-04-17 14:09:39
- * @LastEditTime: 2023-04-19 17:42:00
+ * @LastEditTime: 2023-04-19 20:29:21
  * @LastEditors: weisheng
  * @Description: 基于uni-app实现的axios适配器
  * @FilePath: \fant-axios-adapter\src\uni-adapter\index.ts
@@ -21,7 +21,7 @@ export const uniAdapter = (config: AxiosRequestConfig): AxiosPromise => {
           ? (config.method!.toUpperCase() as 'OPTIONS' | 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELETE' | 'TRACE' | 'CONNECT')
           : undefined,
       url: url,
-      header: config.headers,
+      header: { ...config.headers },
       timeout: config.timeout,
       data: config.data || {},
       success(res) {
@@ -47,6 +47,7 @@ export const uniAdapter = (config: AxiosRequestConfig): AxiosPromise => {
         reject(response)
       }
     }
+    console.log(requestOptions.header, 'requestOptions')
     uni.request(requestOptions)
   })
 }
