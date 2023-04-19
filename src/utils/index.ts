@@ -1,19 +1,32 @@
 /*
  * @Author: weisheng
  * @Date: 2023-04-17 17:27:26
- * @LastEditTime: 2023-04-17 18:08:08
+ * @LastEditTime: 2023-04-19 17:36:39
  * @LastEditors: weisheng
  * @Description: 工具类
- * @FilePath: \fant-axios-adapter\src\utils\index.ts
+ * @FilePath: \uniapp-vue3-fant-tsd:\开发\FE\typescript\fant-axios-adapter\src\utils\index.ts
  * 记得注释
  */
+/**
+ * 全量替换url中的字符
+ * @param str 原始字符串
+ * @param find 要查找的字符串
+ * @param replace 要替换的字符串
+ * @returns
+ */
+function replaceAll(str: string, find: string, replace: string) {
+  return str.replace(new RegExp(find, 'g'), replace)
+}
 
 /**
  * 去除拼接url产生的多余的/
  * @param url 目标路径
  */
 export function beautifyUrl(url: string) {
-  return url.replaceAll('//', '/').replaceAll('https:/', 'https://').replaceAll('http:/', 'http://')
+  url = replaceAll(url, '//', '/') // 先替换所有'//'为'/'
+  url = replaceAll(url, 'https:/', 'https://') // 再将https补全'//'
+  url = replaceAll(url, 'http:/', 'http://') // 再将http补全'//'
+  return url
 }
 
 /**
