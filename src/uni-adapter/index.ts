@@ -1,7 +1,7 @@
 /*
  * @Author: weisheng
  * @Date: 2023-04-17 14:09:39
- * @LastEditTime: 2023-04-19 20:32:33
+ * @LastEditTime: 2023-04-20 16:38:47
  * @LastEditors: weisheng
  * @Description: 基于uni-app实现的axios适配器
  * @FilePath: \fant-axios-adapter\src\uni-adapter\index.ts
@@ -47,6 +47,17 @@ export const uniAdapter = (config: AxiosRequestConfig): AxiosPromise => {
         reject(response)
       }
     }
-    uni.request(requestOptions)
+    let requestTask: UniApp.RequestTask | null = uni.request(requestOptions)
+    if (config.cancelToken) {
+      config.cancelToken.promise.then(function onCanceled(cancel) {
+        if (!requestTask) {
+          return
+        }
+        // 取消请求
+        requestTask.abort()
+        reject(cancel)
+        requestTask = null
+      })
+    }
   })
 }
