@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://gitee.com/fant-mini/fant-axios-adapter/compare/v0.0.5...v0.0.6) (2023-04-20)
+
+
+### Features
+
+* ✨ 支持通过cancelToken取消请求 ([3b5fae5](https://gitee.com/fant-mini/fant-axios-adapter/commit/3b5fae5165ef634403558abbdd9c723cb2a46025))
+
 ### [0.0.5](https://gitee.com/fant-mini/fant-axios-adapter/compare/v0.0.4...v0.0.5) (2023-04-19)
 
 
